@@ -1,4 +1,5 @@
-const { MessageEmbed } = require('discord.js')
+import { Client, Message, MessageEmbed } from 'discord.js'
+import { commands, config } from "../index"
 
 module.exports = {
     info: {
@@ -8,25 +9,25 @@ module.exports = {
         aliases: ["commands", "help me", "pls help"]
     },
 
-    run: async function(client, message, args){
+    run: async function(client: Client, message: Message, args: string[]){
         var allcmds = "";
 
-        client.commands.forEach(cmd => {
+        commands.forEach(cmd => {
             let cmdinfo = cmd.info
-            allcmds+="``"+client.config.prefix+cmdinfo.name+" "+cmdinfo.usage+"`` ~ "+cmdinfo.description+"\n"
+            allcmds+="``"+config.prefix+cmdinfo.name+" "+cmdinfo.usage+"`` ~ "+cmdinfo.description+"\n"
         })
 
         let embed = new MessageEmbed()
         .setAuthor("Commands of "+client.user.username, "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/Music.gif")
         .setColor("BLUE")
         .setDescription(allcmds)
-        .setFooter(`To get info of each command you can do ${client.config.prefix}help [command] | Hander by ItzCutePikachu#2006`)
+        .setFooter(`To get info of each command you can do ${config.prefix}help [command] | Hander by ItzCutePikachu#2006`)
 
         if(!args[0])return message.channel.send(embed)
         else {
             let cmd = args[0]
-            let command = client.commands.get(cmd)
-            if(!command)command = client.commands.find(x => x.info.aliases.includes(cmd))
+            let command = commands.get(cmd)
+            if(!command)command = commands.find(x => x.info.aliases.includes(cmd))
             if(!command)return message.channel.send("Unknown Command")
             let commandinfo = new MessageEmbed()
             .setTitle("Command: "+command.info.name+" info")

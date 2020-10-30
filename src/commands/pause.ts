@@ -1,5 +1,6 @@
-const { MessageEmbed } = require("discord.js");
-const sendError = require("../util/error");
+import { MessageEmbed, Client, Message } from "discord.js"
+import sendError from "../util/error"
+import { queue } from "../index"
 
 module.exports = {
   info: {
@@ -9,8 +10,8 @@ module.exports = {
     aliases: [""],
   },
 
-  run: async function (client, message, args) {
-    const serverQueue = message.client.queue.get(message.guild.id);
+  run: async function (client: Client, message: Message, args: string[]) {
+    const serverQueue = queue.get(message.guild.id);
     if (serverQueue && serverQueue.playing) {
       serverQueue.playing = false;
       serverQueue.connection.dispatcher.pause();

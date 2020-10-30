@@ -1,3 +1,3 @@
 echo "Starting"
-node index.js
+tsc && node build/index.js
 PAUSE

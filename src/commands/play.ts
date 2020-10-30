@@ -1,7 +1,8 @@
-const { Util, MessageEmbed } = require("discord.js");
-const ytdl = require("ytdl-core");
-const yts = require("yt-search");
-const sendError = require("../util/error")
+import { Util, MessageEmbed, Message, Client } from "discord.js"
+import ytdl from "ytdl-core"
+import yts from "yt-search"
+import sendError from "../util/error"
+import { IQueue, queue } from "../index"
 
 module.exports = {
   info: {
@@ -11,7 +12,7 @@ module.exports = {
     aliases: ["p"],
   },
 
-  run: async function (client, message, args) {
+  run: async function (client: Client, message: Message, args: string[]) {
     const channel = message.member.voice.channel;
     if (!channel)return sendError("I'm sorry but you need to be in a voice channel to play music!", message.channel);
 
@@ -22,7 +23,7 @@ module.exports = {
     var searchString = args.join(" ");
     if (!searchString)return sendError("You didn't poivide want i want to play", message.channel);
 
-    var serverQueue = message.client.queue.get(message.guild.id);
+    var serverQueue = queue.get(message.guild.id);
 
     var searched = await yts.search(searchString)
     if(searched.videos.length === 0)return sendError("Looks like i was unable to find the song on YouTube", message.channel)
@@ -52,7 +53,7 @@ module.exports = {
       return message.channel.send(thing);
     }
 
-    const queueConstruct = {
+    const queueConstruct: IQueue = {
       textChannel: message.channel,
       voiceChannel: channel,
       connection: null,
@@ -60,15 +61,15 @@ module.exports = {
       volume: 2,
       playing: true,
     };
-    message.client.queue.set(message.guild.id, queueConstruct);
+    queue.set(message.guild.id, queueConstruct);
     queueConstruct.songs.push(song);
 
     const play = async (song) => {
-      const queue = message.client.queue.get(message.guild.id);
+      const Serverqueue = queue.get(message.guild.id);
       if (!song) {
         sendError("Leaving the voice channel because I think there are no songs in the queue. If you like the bot stay 24/7 in voice channel go to `commands/play.js` and remove the line number 61\n\nThank you for using my code! [GitHub](https://github.com/SudhanPlayz/Discord-MusicBot)", message.channel)
         queue.voiceChannel.leave();//If you want your bot stay in vc 24/7 remove this line :D
-        message.client.queue.delete(message.guild.id);
+        queue.delete(message.guild.id);
         return;
       }
 

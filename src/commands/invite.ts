@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+import { Client, Message, MessageEmbed } from "discord.js"
 
 module.exports = {
   info: {
@@ -8,7 +8,7 @@ module.exports = {
     aliases: ["inv"],
   },
 
-  run: async function (client, message, args) {
+  run: async function(client: Client, message: Message, args: string[]){
     
     //set the permissions id here (https://discordapi.com/permissions.html)
     var permissions = 37080128;
