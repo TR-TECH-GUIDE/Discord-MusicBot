@@ -19,6 +19,7 @@ export interface command{
   info: {
     name: string,
     description: string,
+    usage: string,
     aliases: string[]
   },
 

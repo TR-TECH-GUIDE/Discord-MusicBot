@@ -35,7 +35,7 @@ module.exports = {
             .setDescription(`
 Name: ${command.info.name}
 Description: ${command.info.description}
-Usage: \`\`${client.config.prefix}${command.info.name} ${command.info.usage}\`\`
+Usage: \`\`${config.prefix}${command.info.name} ${command.info.usage}\`\`
 Aliases: ${command.info.aliases.join(", ")}
 `)
             message.channel.send(commandinfo)
