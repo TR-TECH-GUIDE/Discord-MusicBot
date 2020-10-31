@@ -42,7 +42,7 @@ fs.readdir(__dirname + "/events/", (err, files) => {
 });
 
 //Loading Commands
-fs.readdir("./commands/", (err, files) => {
+fs.readdir(__dirname + "/commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach((file) => {
     if (!file.endsWith(".js")) return;
