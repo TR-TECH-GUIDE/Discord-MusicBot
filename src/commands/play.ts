@@ -64,23 +64,23 @@ module.exports = {
     queue.set(message.guild.id, queueConstruct);
     queueConstruct.songs.push(song);
 
-    const play = async (song) => {
+    const play = async (song: any) => {
       const Serverqueue = queue.get(message.guild.id);
       if (!song) {
         sendError("Leaving the voice channel because I think there are no songs in the queue. If you like the bot stay 24/7 in voice channel go to `commands/play.js` and remove the line number 61\n\nThank you for using my code! [GitHub](https://github.com/SudhanPlayz/Discord-MusicBot)", message.channel)
-        queue.voiceChannel.leave();//If you want your bot stay in vc 24/7 remove this line :D
+        Serverqueue.voiceChannel.leave();//If you want your bot stay in vc 24/7 remove this line :D
         queue.delete(message.guild.id);
         return;
       }
 
-      const dispatcher = queue.connection
+      const dispatcher = Serverqueue.connection
         .play(ytdl(song.url))
         .on("finish", () => {
-          queue.songs.shift();
-          play(queue.songs[0]);
+          Serverqueue.songs.shift();
+          play(Serverqueue.songs[0]);
         })
-        .on("error", (error) => console.error(error));
-      dispatcher.setVolumeLogarithmic(queue.volume / 5);
+        .on("error", (error: any) => console.error(error));
+      dispatcher.setVolumeLogarithmic(Serverqueue.volume / 5);
       let thing = new MessageEmbed()
       .setAuthor("Started Playing Music!", "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/Music.gif")
       .setThumbnail(song.img)
@@ -89,7 +89,7 @@ module.exports = {
       .addField("Duration", song.duration, true)
       .addField("Requested by", song.req.tag, true)
       .setFooter(`Views: ${song.views} | ${song.ago}`)
-      queue.textChannel.send(thing);
+      Serverqueue.textChannel.send(thing);
     };
 
     try {
@@ -99,7 +99,7 @@ module.exports = {
       play(queueConstruct.songs[0]);
     } catch (error) {
       console.error(`I could not join the voice channel: ${error}`);
-      message.client.queue.delete(message.guild.id);
+      queue.delete(message.guild.id);
       await channel.leave();
       return sendError(`I could not join the voice channel: ${error}`, message.channel);
     }

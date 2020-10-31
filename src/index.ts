@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 import * as fs from "fs";
-import { Collection, Client, Message, TextChannel, VoiceChannel } from "discord.js";
+import { Collection, Client, Message, DMChannel, NewsChannel, TextChannel, VoiceChannel } from "discord.js";
 dotenv.config()
 
 export const client = new Client();//Making a discord bot client
