@@ -1,5 +1,5 @@
 import { Client, Message, MessageEmbed, TextChannel } from "discord.js";
-import { sendError } from "../util/error";
+import sendError from "../util/error"
 import { queue } from "../index"
 
 module.exports = {
