@@ -2,6 +2,8 @@
 <p align="center">Thanks for 4k Views! I made this for you all!</p>
 <div align="center"><img src="./assets/banner.gif"></div>
 
+## 📝 THIS IS AN OLD VERSION OF MUSIC BOT Use master branch for updated and latest code
+
 ## 📝 Tutorial
 Tutorial has been uploaded on YouTube <img src="https://www.youtube.com/about/static/svgs/icons/brand-resources/YouTube_icon_full-color.svg?cache=f2ec7a5" width="30px"> Watch it by clicking [here](https://youtu.be/DQXuTaYa31I)
 
