@@ -37,7 +37,7 @@ module.exports = {
             ).setDescription(`${Commands.join("\n")}
   
   Discord Music Bot Version: v${require("../package.json").version}
-  [✨ Support Server](https://bawsfm.com) | [Website](https://bawsfm.com) | By [SudhanPlayz](https://bawwaofficial.pages.dev)`);
+  [✨ Support HARP](https://harptech.tk) | [Website](https://bawsfm.com) | By [SudhanPlayz](https://bawwaofficial.pages.dev)`);
     if (!args[0]) message.channel.send(Embed);
     else {
       let cmd =
@@ -116,7 +116,7 @@ SlashCommand: {
             ).setDescription(`${Commands.join("\n")}
   
   Discord Music Bot Version: v${require("../package.json").version}
-  [✨ Support Server](https://bawsfm.com) | [Website](https://bawsfm.com) | By [SudhanPlayz](https://bawwaofficial.pages.dev)`);
+  [✨ Support HARP](https://harptech.tk) | [Website](https://bawsfm.com) | By [SudhanPlayz](https://bawwaofficial.pages.dev)`);
       if (!args) return interaction.send(Embed);
       else {
         let cmd =
