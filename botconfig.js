@@ -19,10 +19,10 @@ module.exports = {
   //Lavalink
    Lavalink: {
     id: "Main",
-    host: "lava.link",
-    port: 80,
-    pass: "youshallnotpass", 
-    secure: false, // Set this to true if you're self-hosting lavalink on replit.
+Host: "www.lavalinknodepublic.ml",
+Port: 443,
+Password: "mrextinctcodes",
+Secure: true, // Set this to true if you're self-hosting lavalink on replit.
   },
   
   //Alternate Lavalink
